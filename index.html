@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello, It's Dao</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #00ff00;
+      font-family: "Courier New", Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .terminal {
+      width: 80%;
+      max-width: 800px;
+      height: 400px; /* Fixed terminal height */
+      padding: 20px;
+      background-color: #121212;
+      border-radius: 5px;
+      box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.5);
+      overflow-y: auto; /* Add vertical scrolling for overflow */
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .terminal-header .buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .terminal-header .buttons div {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: red;
+    }
+    .terminal-header .buttons div:nth-child(2) {
+      background-color: yellow;
+    }
+    .terminal-header .buttons div:nth-child(3) {
+      background-color: green;
+    }
+    .terminal-content {
+      font-size: 1.1em;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="buttons">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div>[Terminal]</div>
+    </div>
+    <div class="terminal-content" id="terminal-content">
+      <!-- Content will be typed here -->
+    </div>
+  </div>
+
+  <script>
+    const content = `
+> Hello, I'm Dao Lam.
+> A Senior Software Engineer specializing in C#, .Net, React, Typescript, Azure, AWS.
+> You can find me at:
+  - GitHub: https://github.com/daolavi
+  - LinkedIn: https://linkedin.com/in/dao-lam
+  - Email: daolavi@gmail.com
+    `;
+    const terminalContent = document.getElementById("terminal-content");
+    let index = 0;
+
+    function type() {
+      if (index < content.length) {
+        terminalContent.textContent += content[index];
+        index++;
+        setTimeout(type, 50);
+      }
+    }
+
+    type();
+  </script>
+</body>
+</html>
