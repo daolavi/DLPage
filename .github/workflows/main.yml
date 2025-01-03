@@ -1,0 +1,26 @@
+name: Deploy HTML to S3
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  S3_BUCKET: 's3://dl-page'
+  AWS_REGION: 'eu-west-2'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy index.html to S3
+        run: |
+          aws s3 cp index.html ${{ env.S3_BUCKET }} --acl public-read
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ env.AWS_REGION }}
